@@ -3,9 +3,13 @@ import spin1 from "../public/2.png"
 import spin2 from "../public/3.png"
 import ether from "../public/eth.png"
 import background from "../public/background.jpg"
+import { Props } from "./Header"
 
-export default function Body() {
+type BodyProps = Omit<Props, 'address' | 'disconnectWallet'>
+
+export default function Body({connectWallet, isConnected}: BodyProps) {
     // style={{backgroundImage: "url(/background.jpg)"}} bg-no-repeat bg-cover
+    const handleSubmit = () => {}
     return (
         <div className="relative py-7 min-h-screen shadow-sm" >
           <Image
@@ -40,8 +44,11 @@ export default function Body() {
                      </div>
                      
 
-                     <button type="submit" className="rounded-3xl h-1/3 bg-pink-300 opacity-80 w-full text-xl font-bold text-pink-600 dark:bg-blue-800 dark:text-blue-400 dark:bg-opacity-40">
-                        Connect Wallet
+                     <button 
+                        onClick={isConnected ? handleSubmit : connectWallet}
+                        type="submit" 
+                        className="rounded-3xl h-1/3 bg-pink-300 opacity-80 w-full text-xl font-bold text-pink-600 dark:bg-blue-800 dark:text-blue-400 dark:bg-opacity-40">
+                        {isConnected ? 'Stake Ether' : 'Connect Wallet'}
                     </button>
                  </form>
             </div>

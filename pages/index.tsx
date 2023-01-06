@@ -1,8 +1,12 @@
 import Head from 'next/head'
 import { useEffect } from 'react'
 import { Header, Body, Sponsor, Transactions } from '../components'
+import useWeb3 from '../socket/Web3'
+
+
 
 export default function Home() {
+ const {isConnected, address, connectWallet, disconnectWallet} = useWeb3()
 
 
   return (
@@ -14,8 +18,13 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className='bg-[#FFF3FB] dark:bg-darkBg-800 transition ease-linear duration-300'>
-        <Header/>
-          <Body/>
+        <Header connectWallet={connectWallet}
+                isConnected={isConnected} 
+                address={address} 
+                disconnectWallet={disconnectWallet}/>
+
+          <Body connectWallet={connectWallet} 
+                isConnected={isConnected}/>
           <Sponsor/>
         <Transactions/>
       </div>

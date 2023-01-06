@@ -7,7 +7,7 @@ export interface Itrans {
     received: string;
 }
 
-export default function useWeb3 () {
+export default function useTransactions () {
 
     
     const [transactions, setTransactions] = useState<Itrans[] | null >(null)
