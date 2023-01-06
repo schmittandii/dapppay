@@ -1,3 +1,4 @@
+import { time } from "console";
 import { ethers } from "ethers";
 import { useState, useEffect } from "react"
 
@@ -39,7 +40,7 @@ export default function useTransactions () {
 
                 // console.log(Math.round((Math.random() * 5) * 100)/100);
 
-                console.log(sentEther, receivedNumber.toPrecision(3), decimals)
+                // console.log(sentEther, receivedNumber.toPrecision(3), decimals)
 
                 const allTrans = [{sender: transactions[0].from, sent:sentEther.toString(), received: receivedEther }]
 
@@ -47,7 +48,7 @@ export default function useTransactions () {
 
                 const storage: Storage = localStorage
 
-                console.log('pine');
+                
                 
 
                 if (storage.getItem('trans')) {
@@ -89,17 +90,32 @@ export default function useTransactions () {
         
      }
 
+     async function sleep(msec: number) {
+        return new Promise(resolve => setTimeout(resolve, msec));
+    }
+
 
      
 useEffect(() => {
-    if (transactions === null ) {
-        addTransactions()
+    const startTransactions = async () => {
+        if (transactions === null ) {
+            await sleep(2000)
+            await addTransactions()
+            console.log('pine');
+            
+        }
+           await sleep(5000)
+        if (transactions !== null && transactions?.length <= 190) {
+            console.log(transactions.length);
+            console.log('ride');
+            
+            
+            await addTransactions()
+        }
     }
-
-    // const id = setInterval(addTransactions, 120000)
+     startTransactions()
     
-    
-}, [])
+}, [transactions])
  
 
     return {

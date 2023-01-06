@@ -1,15 +1,26 @@
 import Image from "next/image"
 import spin1 from "../public/2.png"
 import spin2 from "../public/3.png"
-import ether from "../public/eth.png"
+import etherImage from "../public/eth.png"
 import background from "../public/background.jpg"
 import { Props } from "./Header"
+import { useState } from "react"
+import { truncateAddress } from "./Header"
 
-type BodyProps = Omit<Props, 'address' | 'disconnectWallet'>
+type BodyProps = Omit<Props,  'disconnectWallet'> & {
+    stakeEther(e: string) : Promise<void>,
+    balance: string
+}
 
-export default function Body({connectWallet, isConnected}: BodyProps) {
+
+export default function Body({connectWallet, isConnected, stakeEther, address, balance}: BodyProps) {
     // style={{backgroundImage: "url(/background.jpg)"}} bg-no-repeat bg-cover
-    const handleSubmit = () => {}
+
+     const [ether, setEther] = useState<string>("")
+
+   
+   console.log(ether);
+   
     return (
         <div className="relative py-7 min-h-screen shadow-sm" >
           <Image
@@ -32,23 +43,40 @@ export default function Body({connectWallet, isConnected}: BodyProps) {
 
             <div className="rounded-2xl h-[300px] sm:w-[490px] w-11/12 border px-3 shadow-sm bg-white dark:bg-darkBg-900 dark:border-[#1f2643]">
                  <form className="w-full h-full flex flex-col space-y-6 relative py-10">
-                     <input type="number" placeholder="0" name="eth" className="placeholder:text-3xl appearance-none text-3xl placeholder:font-bold rounded-xl bg-[#F5F6FC] dark:text-white dark:bg-darkBg-600 w-full h-2/5 outline-none px-3 overflow-hidden"/>
+
+                     <input type="number"
+                            placeholder="0" 
+                            name="eth"
+                            value={ether}
+                            onChange={(e) => {setEther(e.target.value)}} 
+                            className="placeholder:text-3xl appearance-none text-3xl placeholder:font-bold rounded-xl bg-[#F5F6FC] dark:text-white dark:bg-darkBg-600 w-full h-2/5 outline-none px-3 overflow-hidden"/>
                      <div className="absolute top-10 right-6 flex items-center space-x-2">
                       <Image
-                       src={ether}
+                       src={etherImage}
                        height={24}
                        width={24}
                        alt="ether"
                       />
                       <label htmlFor="eth" className="font-extrabold text-2xl font-mono dark:text-white">ETH</label>
                      </div>
+
+                     {isConnected && (address !== null) && (truncateAddress(address) !== "No Account") &&
+
+                                        (<h1 className="absolute top-[78px] right-6 text-sm font-medium text-gray-500 dark:text-gray-400">Balance: {balance}</h1>)
+                      }
                      
 
                      <button 
-                        onClick={isConnected ? handleSubmit : connectWallet}
+                        onClick={isConnected && (address !== null) && (truncateAddress(address) !== "No Account") ? (e) => {
+                            e.preventDefault()
+                            stakeEther(ether.toString())} 
+                            : 
+                            (e) => {
+                            e.preventDefault()  
+                            connectWallet()}}
                         type="submit" 
                         className="rounded-3xl h-1/3 bg-pink-300 opacity-80 w-full text-xl font-bold text-pink-600 dark:bg-blue-800 dark:text-blue-400 dark:bg-opacity-40">
-                        {isConnected ? 'Stake Ether' : 'Connect Wallet'}
+                        {isConnected && (address !== null) && (truncateAddress(address) !== "No Account") ? 'Stake Ether' : 'Connect Wallet'}
                     </button>
                  </form>
             </div>

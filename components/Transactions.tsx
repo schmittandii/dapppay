@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { Itrans } from "../socket"
 
 function Paginate(transactions: Itrans[] | null) {
-    const itemsPerPage = 30
+    const itemsPerPage = 50
 
     if (transactions) {
         const trans = [...transactions]
@@ -154,7 +154,7 @@ export default function Transactions() {
                           </button>
 
                             {pageTrans.map((_, index) => (
-                                <button className={`border p-2 shadow-lg ${page === index && "bg-gray-500 text-white w-8"}`} 
+                                <button className={`border p-2 shadow-lg w-8 ${page === index && "bg-gray-500 text-white"}`} 
                                   key={index}
                                   onClick={() => handlePageShow('number', index)}
                                 >

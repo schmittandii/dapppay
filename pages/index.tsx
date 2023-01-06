@@ -2,11 +2,12 @@ import Head from 'next/head'
 import { useEffect } from 'react'
 import { Header, Body, Sponsor, Transactions } from '../components'
 import useWeb3 from '../socket/Web3'
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function Home() {
- const {isConnected, address, connectWallet, disconnectWallet} = useWeb3()
+ const {isConnected, address, connectWallet, disconnectWallet, stakeEther, balance} = useWeb3()
 
 
   return (
@@ -24,9 +25,14 @@ export default function Home() {
                 disconnectWallet={disconnectWallet}/>
 
           <Body connectWallet={connectWallet} 
-                isConnected={isConnected}/>
+                isConnected={isConnected}
+                stakeEther={stakeEther}
+                address={address}
+                balance={balance} 
+                />
           <Sponsor/>
         <Transactions/>
+        <ToastContainer/>
       </div>
     
     </>
