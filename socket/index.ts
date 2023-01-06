@@ -101,13 +101,12 @@ useEffect(() => {
         if (transactions === null ) {
             await sleep(2000)
             await addTransactions()
-            console.log('pine');
             
         }
            await sleep(5000)
         if (transactions !== null && transactions?.length <= 190) {
             console.log(transactions.length);
-            console.log('ride');
+            
             
             
             await addTransactions()
