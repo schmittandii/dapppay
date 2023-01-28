@@ -41,7 +41,7 @@ export default function Body({connectWallet, isConnected, stakeEther, address, b
 
             <div className="w-full h-full flex flex-col items-center mt-10">
 
-            <div className="rounded-2xl h-[300px] sm:w-[490px] w-11/12 border px-3 shadow-sm bg-white dark:bg-darkBg-900 dark:border-[#1f2643]">
+            <div className="rounded-2xl h-[300px] sm:w-[490px] w-11/12 border border-gray-300 px-2 shadow-sm bg-white dark:bg-darkBg-1000 dark:border-[#1f2643]">
                  <form className="w-full h-full flex flex-col space-y-6 relative py-10">
 
                      <input type="number"
@@ -49,7 +49,7 @@ export default function Body({connectWallet, isConnected, stakeEther, address, b
                             name="eth"
                             value={ether}
                             onChange={(e) => {setEther(e.target.value)}} 
-                            className="placeholder:text-3xl appearance-none text-3xl placeholder:font-bold rounded-xl bg-[#F5F6FC] dark:text-white dark:bg-darkBg-600 w-full h-2/5 outline-none px-3 overflow-hidden"/>
+                            className="placeholder:text-4xl appearance-none text-4xl placeholder:font-bold rounded-xl bg-[#F5F6FC] dark:text-white dark:bg-darkBg-600 w-full h-2/5 outline-none px-3 overflow-hidden"/>
                      <div className="absolute top-10 right-6 flex items-center space-x-2">
                       <Image
                        src={etherImage}

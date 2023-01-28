@@ -30,7 +30,7 @@ export default function Home() {
                 address={address}
                 balance={balance} 
                 />
-          <Sponsor/>
+          {/* <Sponsor/> */}
         <Transactions/>
         <ToastContainer/>
       </div>
