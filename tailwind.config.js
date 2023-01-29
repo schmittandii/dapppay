@@ -20,7 +20,8 @@ module.exports = {
         'logo-slide': 'walk 30s linear infinite'
       },
       fontFamily: {
-        'bungee': ['Bungee', 'sans-serif']
+        'bungee': ['Bungee', 'sans-serif'],
+        'custee': ['Inter custom', 'sans-serif']
       },
       colors: {
         darkBg: {

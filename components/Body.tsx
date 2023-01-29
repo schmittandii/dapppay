@@ -82,12 +82,12 @@ export default function Body({connectWallet, isConnected, stakeEther, address, b
             </div>
 
             <div className="mt-8 w-11/12">
-                 <h1 className="font-[fantasy] md:text-7xl text-4xl font-extrabold text-center tracking-widest leading-normal dark:text-slate-100">
+                 <h1 className="font-custee md:text-7xl text-4xl font-extrabold text-center tracking-widest leading-normal dark:text-slate-100">
                      Stake your Ether <br/> into pool.
                  </h1>
                  
 
-                 <h3 className="font-[lato] md:text-2xl text-xl font-extraligh text-center tracking-wide leading-relaxed mt-9 dark:text-slate-100">
+                 <h3 className="font-custee md:text-2xl text-xl font-extraligh text-center tracking-wide leading-relaxed mt-9 dark:text-slate-100">
                      Receive up to 6x of initial stake determined by reserve policy.
                  </h3>
             </div>
