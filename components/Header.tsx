@@ -57,7 +57,7 @@ export default function Header({connectWallet, isConnected, address, disconnectW
                         </svg>
 
                         </Popover.Button>
-                        <Popover.Panel className="absolute cursor-pointer z-10 text-sm top-9 bg-pink-300 text-pink-800 dark:text-blue-400 dark:bg-blue-800   rounded-xl p-1">
+                        <Popover.Panel className="absolute cursor-pointer z-10 text-sm top-11 bg-pink-300 text-pink-800 dark:text-white dark:bg-darkBg-600 rounded-xl p-3">
                         <div className="cursor-pointer">
                            disconnect
                         </div>
