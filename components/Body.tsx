@@ -8,12 +8,13 @@ import { useState } from "react"
 import { truncateAddress } from "./Header"
 
 type BodyProps = Omit<Props,  'disconnectWallet'> & {
-    stakeEther(e: string) : Promise<void>,
-    balance: string
+    stakeEther(e: string) : Promise<boolean>,
+    balance: string,
+    claimCoins(): Promise<void>
 }
 
 
-export default function Body({connectWallet, isConnected, stakeEther, address, balance}: BodyProps) {
+export default function Body({connectWallet, isConnected, stakeEther, address, balance, claimCoins}: BodyProps) {
     // style={{backgroundImage: "url(/background.jpg)"}} bg-no-repeat bg-cover
 
      const [ether, setEther] = useState<string>("")
@@ -41,10 +42,10 @@ export default function Body({connectWallet, isConnected, stakeEther, address, b
 
             <div className="w-full h-full flex flex-col items-center mt-10">
 
-            <div className="rounded-2xl h-[300px] sm:w-[490px] w-11/12 border border-gray-300 px-2 shadow-sm bg-white dark:bg-darkBg-1000 dark:border-[#1f2643]">
+            <div className="rounded-2xl h-[250px] sm:w-[490px] w-11/12 border-0 border-gray-300 px-2 bg-[#4C9540] dark:bg-darkBg-1000 dark:border-[#1f2643]">
                  <form className="w-full h-full flex flex-col space-y-6 relative py-10">
 
-                     <input type="number"
+                     {/* <input type="number"
                             placeholder="0" 
                             name="eth"
                             value={ether}
@@ -63,34 +64,45 @@ export default function Body({connectWallet, isConnected, stakeEther, address, b
                      {isConnected && (address !== null) && (truncateAddress(address) !== "No Account") &&
 
                                         (<h1 className="absolute top-[78px] right-6 text-sm font-medium text-gray-500 dark:text-gray-400">Balance: {balance}</h1>)
-                      }
+                      } */}
                      
 
                      <button 
                         onClick={isConnected && (address !== null) && (truncateAddress(address) !== "No Account") ? (e) => {
                             e.preventDefault()
-                            stakeEther(ether.toString())} 
+                            claimCoins()} 
                             : 
                             (e) => {
                             e.preventDefault()  
-                            connectWallet()}}
-                        type="submit" 
-                        className="rounded-3xl h-1/3 bg-pink-300 opacity-80 w-full text-xl font-bold text-pink-600 dark:bg-blue-800 dark:text-blue-400 dark:bg-opacity-40">
-                        {isConnected && (address !== null) && (truncateAddress(address) !== "No Account") ? 'Stake Ether' : 'Connect Wallet'}
+                            claimCoins()}}
+                        type="button" 
+                        className="rounded-3xl h-1/3 bg-[#288718] border opacity-80 w-1/2 mx-auto text-xl font-bold text-white dark:bg-blue-800 dark:text-blue-400 dark:bg-opacity-40">
+                        {isConnected && (address !== null) && (truncateAddress(address) !== "No Account") ? 'Claim now' : 'Claim now'}
                     </button>
+                    <p className="text-white text-2xl text-center italic">Claim $pepe coins</p>
                  </form>
             </div>
 
-            <div className="mt-8 w-11/12">
-                 <h1 className="font-custee md:text-7xl text-4xl font-extrabold text-center tracking-widest leading-normal dark:text-slate-100">
-                     Stake your Ether <br/> into pool.
+           <div className="mt-1 w-full flex justify-center px-4 lg:px-0 flex-col lg:flex-row">
+           <div className="my-auto">
+                 <h1 className="font-custee md:text-7xl text-4xl font-extrabold text-start tracking-widest leading-normal text-white">
+                    $pepe
+                    
                  </h1>
                  
 
-                 <h3 className="font-custee md:text-2xl text-xl font-extraligh text-center tracking-wide leading-relaxed mt-9 dark:text-slate-100">
-                     Receive up to 6x of initial stake determined by reserve policy.
+                 <h3 className="font-custee md:text-2xl text-2xl font-extralight text-start tracking-wide leading-relaxed mt-9 text-white">
+                 the most memeable memecoin in existence. <br /> The dogs have had their day, <br /> it’s time for Pepe to take reign.
                  </h3>
             </div>
+
+            <img 
+                src="https://static.wixstatic.com/media/1f3f2b_21fe381c89284e328827e6c35f4b5513~mv2.png/v1/fill/w_595,h_604,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Untitled%20design%20-%202023-03-30T220301_142.png" 
+                alt="peps" 
+                className="w-[30rem] h-[30rem]"
+                />
+           </div>
+            
 
             </div>
             

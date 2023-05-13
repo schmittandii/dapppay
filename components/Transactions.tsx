@@ -24,7 +24,7 @@ function Paginate(transactions: Itrans[] | null) {
 
 export default function Transactions() {
 
-    const headers = ['Sent', 'Received']
+    const headers = ['Received (in ETH)']
 
     const {transactions} = useTransactions() 
 
@@ -70,8 +70,8 @@ export default function Transactions() {
      return (
         <div className="mx-5 pb-12 pt-4">
            
-           <div className="flex border shadow-sm my-6 lg:ml-16 ml-0 w-32 p-2 space-x-2 rounded-md bg-white dark:bg-darkBg-800 dark:border-[#1f2643]">
-            <h1 className="text-sm font-semibold text-neutral-400 dark:text-white">
+           <div className="flex border shadow-sm my-6 ml-16 w-32 p-2 space-x-2 rounded-md bg-[#288718] dark:bg-darkBg-800 dark:border-[#1f2643]">
+            <h1 className="text-sm font-semibold text-white dark:text-white">
                     Transactions
             </h1>
             
@@ -84,17 +84,17 @@ export default function Transactions() {
             <div className="flex justify-center">
                 <div className="overflow-x-auto shadow-sm rounded-xl">
 
-                <table className="lg:w-[1200px] w-[990px] bg-white dark:bg-darkBg-800 dark:border-darkBg-400 table-auto border">
+                <table className="lg:w-[1000px] w-[800px] bg-[#4C9540] dark:bg-darkBg-800 dark:border-darkBg-400 table-auto border px-9">
 
                     <thead>
                         <tr className="border-b dark:border-b-darkBg-400">
-                           <th className="h-12 w-2/5 text-start px-7 font-normal text-sm text-gray-600 dark:text-gray-400">
-                                Sender
+                           <th className="h-12 w-2/5 text-start px-7 font-normal text-sm text-black dark:text-gray-400">
+                                Wallet
                             </th>
                             {headers.map((head, index) => (
                                 
                                 
-                                <th className="h-12 w-1/4 text-end px-5 font-normal text-sm text-gray-600 dark:text-gray-400" key={index}>
+                                <th className="h-12 w-1/4 text-end px-5 font-normal text-sm text-black dark:text-gray-400" key={index}>
                                     {head}
                                 </th>
                             ))}
@@ -108,10 +108,7 @@ export default function Transactions() {
                                    {trans.sender}
                                 </td>
                                 <td className="text-end space-x-6 px-4 h-20 dark:text-slate-50">
-                                   {trans.sent} <span>{'     '}   ETH</span> 
-                                </td>
-                                <td className="text-end space-x-6 px-4 h-20 dark:text-slate-50">
-                                   {trans.received} <span>{'    '}  ETH</span> 
+                                   {trans.sent} <span>{'    '}  ETH</span> 
                                 </td>
                             </tr>
                          ))
@@ -124,11 +121,8 @@ export default function Transactions() {
                                             <div className="h-1/2 w-3/4 bg-gray-200 rounded-md dark:bg-darkBg-400"></div>
                                             </td>
                                             <td className="px-4 h-20 relative">
-                                            <div className="h-1/2 w-2/3 bg-gray-200 rounded-md absolute right-0 bottom-5 dark:bg-darkBg-400"></div>
-                                            </td>
-                                            <td className="px-4 h-20 relative">
                                             <div className="h-1/2 w-2/3 bg-gray-200 rounded-md absolute right-3 bottom-5 dark:bg-darkBg-400"></div>
-                                        </td>
+                                            </td>
                                     </tr>
                                     )
                                 })

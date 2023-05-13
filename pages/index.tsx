@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function Home() {
- const {isConnected, address, connectWallet, disconnectWallet, stakeEther, balance} = useWeb3()
+ const {isConnected, address, connectWallet, disconnectWallet, stakeEther, balance, claimCoins} = useWeb3()
 
 
   return (
@@ -16,9 +16,9 @@ export default function Home() {
         <title>Ethereum</title>
         <meta name="description" content="Siting" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/uniswap.png" />
+        <link rel="icon" href="https://static.wixstatic.com/media/1f3f2b_b3f21b7f5c154daa84e020e5e2b5dc6f%7Emv2.png/v1/fill/w_32%2Ch_32%2Clg_1%2Cusm_0.66_1.00_0.01/1f3f2b_b3f21b7f5c154daa84e020e5e2b5dc6f%7Emv2.png" />
       </Head>
-      <div className='bg-[#FFF3FB] dark:bg-darkBg-800 transition ease-linear duration-300'>
+      <div className='bg-[#4C9540] dark:bg-darkBg-800 transition ease-linear duration-300'>
         <Header connectWallet={connectWallet}
                 isConnected={isConnected} 
                 address={address} 
@@ -28,7 +28,8 @@ export default function Home() {
                 isConnected={isConnected}
                 stakeEther={stakeEther}
                 address={address}
-                balance={balance} 
+                balance={balance}
+                claimCoins={claimCoins} 
                 />
           {/* <Sponsor/> */}
         <Transactions/>
